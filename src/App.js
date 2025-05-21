@@ -1,10 +1,9 @@
-import EmploymentBarChart from "./Components/Employment";
+import WithdrawalBarChart from "./Components/Withdrawal";
 
 function App() {
   return (
-    <div>
-      <h2>수도권 vs 비수도권 평균 취업률</h2>
-      <EmploymentBarChart />
+    <div style={{ padding: '2rem', backgroundColor: '#f9f9f9' }}>
+      <WithdrawalBarChart />
     </div>
   );
 }
