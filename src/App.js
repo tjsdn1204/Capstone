@@ -29,6 +29,7 @@ function App() {
       {/* 스크롤에 따라 점이 사라지는 지도 애니메이션 */}
       <div>
         <h2 style={{ marginBottom: '1rem', color: '#333' }}>점이 사라지는 지역별 지도</h2>
+        <div style={{ width: '800px', height: '800px', margin: '0 auto' }}></div>
         <ScrollDisappearingMap />
       </div>
 
