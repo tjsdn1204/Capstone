@@ -3,6 +3,9 @@ import WithdrawalBarChart from './Components/Withdrawal';
 import BirthTrendChart from './Components/BirthTrendChart';
 import ScrollDisappearingMap from './Components/Maps';
 import SchoolAgePopulationChart from './Components/SchoolAgePopulationChart';
+import MapWithBubbles from './Components/MapWithBubbles';
+import CultureFacilityChart from './Components/BarChart';
+import LowEnrollmentChart from './Components/Midal';
 
 function App() {
   return (
@@ -32,6 +35,22 @@ function App() {
         <div style={{ width: '800px', height: '800px', margin: '0 auto' }}></div>
         <ScrollDisappearingMap />
       </div>
+      
+      <div style={{ marginBottom: '4rem' }}>
+        <h2 style={{ marginBottom: '1rem', color: '#333' }}>지역별 문화기반시설 수</h2>
+        <CultureFacilityChart />
+      </div>
+
+      <div style={{ marginTop: '4rem' }}>
+        <h2 style={{ marginBottom: '1rem', color: '#333' }}>지역별 평균 취업률</h2>
+        <MapWithBubbles />
+      </div>
+      
+      <div>
+        <LowEnrollmentChart />
+      </div>
+
+    
 
     </div>
   );

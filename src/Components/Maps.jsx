@@ -25,7 +25,7 @@ export default function ScrollDisappearingMap() {
   }, []);
 
   return (
-    <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+    <div style={{ textAlign: 'center', padding: '2rem 0', position: 'relative' }}>
       <img
         src={imageFrames[frame]}
         alt={`지도 단계 ${frame + 1}`}
@@ -37,8 +37,15 @@ export default function ScrollDisappearingMap() {
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
         }}
       />
-      {/* 빈 영역 확보용 */}
-      <div style={{ height: '300vh' }} />
+      {/* 스크롤 애니메이션용 가상 공간 – 레이아웃에는 영향 없음 */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: '300vh',
+        width: '1px',
+        pointerEvents: 'none'
+      }} />
     </div>
   );
 }
