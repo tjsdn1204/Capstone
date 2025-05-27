@@ -5,7 +5,7 @@ import {
 import { motion } from 'framer-motion';
 
 const data = [
-  { region: '수도권', rate: 2.7, color: '#273F4F', detail: '서울, 경기, 인천 지역 평균 자퇴율' },
+  { region: '수도권', rate: 2.7, color: '#FE7743', detail: '서울, 경기, 인천 지역 평균 자퇴율' },
   { region: '비수도권', rate: 4.8, color: '#273F4F', detail: '그 외 지역 평균 자퇴율' }
 ];
 
