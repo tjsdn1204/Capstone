@@ -12,7 +12,7 @@ import LowEnrollmentChart from './Components/Midal';
 function App() {
   return (
     <Router>
-      <div style={{ padding: '2rem', fontFamily: 'sans-serif', backgroundColor: '#f4f6f8', minHeight: '100vh' }}>
+      <div style={{ padding: '2rem', fontFamily: 'sans-serif', backgroundColor: '#222222', minHeight: '100vh', color: 'white' }}>
         <Routes>
           <Route path="/withdrawal" element={<WithdrawalBarChartWrapper />} />
           <Route path="/birth" element={<BirthTrendChartWrapper />} />
