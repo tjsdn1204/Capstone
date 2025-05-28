@@ -5,17 +5,17 @@ import {
 import { motion } from 'framer-motion';
 
 const data = [
-  { year: 2014, births: 435000 },
-  { year: 2015, births: 438000 },
-  { year: 2016, births: 406000 },
-  { year: 2017, births: 357000 },
-  { year: 2018, births: 326000 },
-  { year: 2019, births: 304000 },
-  { year: 2020, births: 272000 },
-  { year: 2021, births: 260000 },
-  { year: 2022, births: 248000 },
-  { year: 2023, births: 230000 },
-  { year: 2024, births: 240000 }, // 예측치 가능
+  { year: 2014, births: 435435 },
+  { year: 2015, births: 438420 },
+  { year: 2016, births: 406243 },
+  { year: 2017, births: 357771 },
+  { year: 2018, births: 326822 },
+  { year: 2019, births: 302676 },
+  { year: 2020, births: 272337 },
+  { year: 2021, births: 260562 },
+  { year: 2022, births: 249186 },
+  { year: 2023, births: 230028 },
+  { year: 2024, births: 238300 }, // 예측치 가능
 ];
 
 export default function BirthTrendChart() {
