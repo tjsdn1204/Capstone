@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import WithdrawalBarChart from './Components/Withdrawal';
 import BirthTrendChart from './Components/BirthTrendChart';
 import ScrollDisappearingMap from './Components/Maps';
@@ -9,51 +11,70 @@ import LowEnrollmentChart from './Components/Midal';
 
 function App() {
   return (
-    <div style={{ padding: '2rem', fontFamily: 'sans-serif', backgroundColor: '#f4f6f8', minHeight: '100vh' }}>
-
-      {/* 자퇴율 분석 그래프 */}
-      <div style={{ marginBottom: '4rem' }}>
-        <h2 style={{ marginBottom: '1rem', color: '#333' }}>수도권 vs 비수도권 자퇴율</h2>
-        <WithdrawalBarChart />
-      </div> 
-
-      {/* 출생아 수 추이 그래프 */}
-      <div style={{ marginBottom: '4rem' }}>
-        <h2 style={{ marginBottom: '1rem', color: '#333' }}>출생아 수 추이 (2014~2024)</h2>
-        <BirthTrendChart />
+    <Router>
+      <div style={{ padding: '2rem', fontFamily: 'sans-serif', backgroundColor: '#f4f6f8', minHeight: '100vh' }}>
+        <Routes>
+          <Route path="/withdrawal" element={<WithdrawalBarChartWrapper />} />
+          <Route path="/birth" element={<BirthTrendChartWrapper />} />
+          <Route path="/school-age" element={<SchoolAgePopulationChartWrapper />} />
+          <Route path="/map-scroll" element={<ScrollDisappearingMapWrapper />} />
+          <Route path="/culture" element={<CultureFacilityChartWrapper />} />
+          <Route path="/employment" element={<MapWithBubblesWrapper />} />
+          <Route path="/low-enrollment" element={<LowEnrollmentChartWrapper />} />
+        </Routes>
       </div>
-
-      {/* 학령인구 변화 그래프 */}
-      <div style={{ marginBottom: '4rem' }}>
-        <h2 style={{ marginBottom: '1rem', color: '#333' }}>학령인구(6~21세) 추이 및 증감률</h2>
-        <SchoolAgePopulationChart />
-      </div>
-
-      {/* 스크롤에 따라 점이 사라지는 지도 애니메이션 */}
-      <div>
-        <h2 style={{ marginBottom: '1rem', color: '#333' }}>점이 사라지는 지역별 지도</h2>
-        <div style={{ width: '800px', height: '800px', margin: '0 auto' }}></div>
-        <ScrollDisappearingMap />
-      </div>
-      
-      <div style={{ marginBottom: '4rem' }}>
-        <h2 style={{ marginBottom: '1rem', color: '#333' }}>지역별 문화기반시설 수</h2>
-        <CultureFacilityChart />
-      </div>
-
-      <div style={{ marginTop: '4rem' }}>
-        <h2 style={{ marginBottom: '1rem', color: '#333' }}>지역별 평균 취업률</h2>
-        <MapWithBubbles />
-      </div>
-      
-      <div>
-        <LowEnrollmentChart />
-      </div>
-
-    
-
-    </div>
+    </Router>
   );
 }
+
+// 각 시각화마다 헤더 포함한 래퍼 컴포넌트 정의
+const WithdrawalBarChartWrapper = () => (
+  <>
+    <h2>수도권 vs 비수도권 자퇴율</h2>
+    <WithdrawalBarChart />
+  </>
+);
+
+const BirthTrendChartWrapper = () => (
+  <>
+    <h2>출생아 수 추이 (2014~2024)</h2>
+    <BirthTrendChart />
+  </>
+);
+
+const SchoolAgePopulationChartWrapper = () => (
+  <>
+    <h2>학령인구(6~21세) 추이 및 증감률</h2>
+    <SchoolAgePopulationChart />
+  </>
+);
+
+const ScrollDisappearingMapWrapper = () => (
+  <>
+    <h2>점이 사라지는 지역별 지도</h2>
+    <ScrollDisappearingMap />
+  </>
+);
+
+const CultureFacilityChartWrapper = () => (
+  <>
+    <h2>지역별 문화기반시설 수</h2>
+    <CultureFacilityChart />
+  </>
+);
+
+const MapWithBubblesWrapper = () => (
+  <>
+    <h2>지역별 평균 취업률</h2>
+    <MapWithBubbles />
+  </>
+);
+
+const LowEnrollmentChartWrapper = () => (
+  <>
+    <h2>충원율 80.8% 미만 대학 시각화</h2>
+    <LowEnrollmentChart />
+  </>
+);
 
 export default App;
