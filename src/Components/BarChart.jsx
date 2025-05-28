@@ -37,41 +37,44 @@ function CultureFacilityChart() {
         height: '500px',
         margin: '2rem auto',
         padding: '2rem',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#222222', // 어두운 배경
         borderRadius: '16px',
-        boxShadow: '0 6px 20px rgba(0, 0, 0, 0.08)',
         fontFamily: 'Segoe UI, Roboto, sans-serif',
+        color: 'white'
       }}
     >
-      <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1.5rem', color: '#273F4F', textAlign: 'center' }}>
-        지역별 문화기반시설 수
-      </h3>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
+          margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#444" />
           <XAxis
             dataKey="지역"
             angle={-45}
             textAnchor="end"
             interval={0}
-            stroke="#666"
-            style={{ fontSize: 12 }}
+            stroke="#ccc"
+            style={{ fontSize: 12, fill: 'white' }}
           />
           <YAxis
-            stroke="#666"
+            stroke="#ccc"
             allowDecimals={false}
-            style={{ fontSize: 12 }}
+            style={{ fontSize: 12, fill: 'white' }}
           />
           <Tooltip
-            contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #ccc' }}
-            labelStyle={{ color: '#273F4F', fontWeight: 600 }}
+            contentStyle={{
+              backgroundColor: '#333',
+              borderRadius: '8px',
+              border: '1px solid #888',
+              color: 'white'
+            }}
+            labelStyle={{ color: '#fff', fontWeight: 600 }}
+            itemStyle={{ color: '#fff' }}
           />
           <Bar
             dataKey="문화기반시설수"
-            fill="#273F4F"
+            fill="#84A59D"
             radius={[4, 4, 0, 0]}
           />
         </BarChart>
