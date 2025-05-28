@@ -58,25 +58,22 @@ function LowEnrollmentChart() {
         height: '500px',
         margin: '2rem auto',
         padding: '2rem',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#222222', // 어두운 Wix 배경과 일치
         borderRadius: '16px',
-        boxShadow: '0 6px 20px rgba(0, 0, 0, 0.08)',
         fontFamily: 'Segoe UI, Roboto, sans-serif',
+        color: 'white'
       }}
     >
-      <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1.5rem', color: '#273F4F', textAlign: 'center' }}>
-        수도권/비수도권 내 지역별 충원율 미달 대학 수 (Stacked Bar)
-      </h3>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-          <XAxis dataKey="구분" stroke="#666" style={{ fontSize: 13 }} />
-          <YAxis allowDecimals={false} stroke="#666" style={{ fontSize: 13 }} />
-          <Tooltip />
-          <Legend />
+          <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+          <XAxis dataKey="구분" stroke="#ccc" style={{ fontSize: 13 }} />
+          <YAxis allowDecimals={false} stroke="#ccc" style={{ fontSize: 13 }} />
+          <Tooltip contentStyle={{ backgroundColor: '#333', border: 'none', color: 'white' }} />
+          <Legend wrapperStyle={{ color: 'white' }} />
 
           {/* 수도권 지역 */}
           <Bar dataKey="서울" stackId="수도권" fill={COLORS["서울"]} />
@@ -101,4 +98,3 @@ function LowEnrollmentChart() {
 }
 
 export default LowEnrollmentChart;
-
