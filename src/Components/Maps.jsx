@@ -12,40 +12,34 @@ export default function ScrollDisappearingMap() {
   const [frame, setFrame] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollRatio = scrollTop / docHeight;
-      const index = Math.floor(scrollRatio * imageFrames.length);
-      setFrame(Math.min(index, imageFrames.length - 1));
-    };
+    const interval = setInterval(() => {
+      setFrame(prev => {
+        if (prev < imageFrames.length - 1) return prev + 1;
+        return prev; // 마지막 프레임에서 멈춤
+      });
+    }, 700); // 0.5초마다 프레임 전환
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div style={{ textAlign: 'center', padding: '2rem 0', position: 'relative' }}>
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      maxWidth: '800px',
+      aspectRatio: '1 / 1',
+      margin: '0 auto',
+      overflow: 'hidden'
+    }}>
       <img
         src={imageFrames[frame]}
-        alt={`지도 단계 ${frame + 1}`}
+        alt={`지도 프레임 ${frame + 1}`}
         style={{
           width: '100%',
-          maxWidth: '800px',
-          transition: 'opacity 0.6s ease-in-out',
-          borderRadius: '12px',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
+          height: '100%',
+          objectFit: 'contain'
         }}
       />
-      {/* 스크롤 애니메이션용 가상 공간 – 레이아웃에는 영향 없음 */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: '300vh',
-        width: '1px',
-        pointerEvents: 'none'
-      }} />
     </div>
   );
 }

@@ -10,7 +10,6 @@ import {
   Legend
 } from 'recharts';
 
-// stacked bar용 데이터
 const data = [
   {
     구분: '수도권',
@@ -54,33 +53,31 @@ function LowEnrollmentChart() {
     <div
       style={{
         width: '100%',
-        maxWidth: '900px',
-        height: '500px',
-        margin: '2rem auto',
-        padding: '2rem',
-        backgroundColor: '#222222', // 어두운 Wix 배경과 일치
-        borderRadius: '16px',
+        padding: '1rem',
+        boxSizing: 'border-box',
+        backgroundColor: '#222222',
         fontFamily: 'Segoe UI, Roboto, sans-serif',
-        color: 'white'
+        color: 'white',
+        borderRadius: '12px'
       }}
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" aspect={2}>
         <BarChart
           data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-          <XAxis dataKey="구분" stroke="#ccc" style={{ fontSize: 13 }} />
-          <YAxis allowDecimals={false} stroke="#ccc" style={{ fontSize: 13 }} />
-          <Tooltip contentStyle={{ backgroundColor: '#333', border: 'none', color: 'white' }} />
+          <XAxis dataKey="구분" stroke="#ccc" />
+          <YAxis allowDecimals={false} stroke="#ccc" />
+          <Tooltip contentStyle={{ backgroundColor: '#333', color: 'white' }} />
           <Legend wrapperStyle={{ color: 'white' }} />
 
-          {/* 수도권 지역 */}
+          {/* 수도권 */}
           <Bar dataKey="서울" stackId="수도권" fill={COLORS["서울"]} />
           <Bar dataKey="경기" stackId="수도권" fill={COLORS["경기"]} />
           <Bar dataKey="인천" stackId="수도권" fill={COLORS["인천"]} />
 
-          {/* 비수도권 지역 */}
+          {/* 비수도권 */}
           <Bar dataKey="경북" stackId="비수도권" fill={COLORS["경북"]} />
           <Bar dataKey="전남" stackId="비수도권" fill={COLORS["전남"]} />
           <Bar dataKey="충북" stackId="비수도권" fill={COLORS["충북"]} />

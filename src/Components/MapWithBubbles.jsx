@@ -1,5 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import '../Style/MapWithBubbles.css';
+
+const mapWidth = 800;
+const mapHeight = 850;
 
 const employmentData = {
   서울: { x: 480, y: 210, rate: 70.02 },
@@ -22,34 +25,61 @@ const employmentData = {
 };
 
 export default function MapWithBubbles() {
-  const containerRef = useRef(null);
-  const [containerPos, setContainerPos] = useState({ left: 0, top: 0 });
-
-  useEffect(() => {
-    const rect = containerRef.current.getBoundingClientRect();
-    setContainerPos({
-      left: rect.left + window.scrollX,
-      top: rect.top + window.scrollY,
-    });
-  }, []);
-
   return (
-    <div className="map-container" ref={containerRef}>
-      <img src="/images/지도.png" alt="지도" className="map-image" />
-      {Object.entries(employmentData).map(([region, { x, y, rate }]) => (
-        <div
-          key={region}
-          className="bubble"
-          style={{
-            left: `${x - 180}px`,   // ✅ 전체적으로 왼쪽으로 20px 이동
-            top: `${y}px`,
-            width: `${rate * 0.8}px`,   // ✅ 버블 크기 축소
-            height: `${rate * 0.8}px`,
-          }}
-        >
-          <span className="tooltip">{region}: {rate.toFixed(1)}%</span>
-        </div>
-      ))}
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        maxWidth: '800px',
+        aspectRatio: `${mapWidth} / ${mapHeight}`,
+        margin: '0 auto',
+        backgroundColor: '#222222',
+        borderRadius: '12px',
+        overflow: 'hidden'
+      }}
+    >
+      <img
+        src="/images/지도.png"
+        alt="지도"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain',
+          display: 'block',
+        }}
+      />
+      {Object.entries(employmentData).map(([region, { x, y, rate }]) => {
+        const leftPercent = (x / mapWidth) * 100;
+        const topPercent = (y / mapHeight) * 100;
+        const sizeVW = Math.min((rate / 100) * 6, 6); // 최대 6vw 제한
+
+        return (
+          <div
+            key={region}
+            style={{
+              position: 'absolute',
+              left: `${leftPercent}%`,
+              top: `${topPercent}%`,
+              width: `${sizeVW}vw`,
+              height: `${sizeVW}vw`,
+              backgroundColor: '#FFA500', // 주황색
+              borderRadius: '50%',
+              transform: 'translate(-50%, -50%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              fontSize: 'clamp(10px, 1.5vw, 14px)',
+              textAlign: 'center',
+              pointerEvents: 'none',
+            }}
+          >
+            {region}
+            <br />
+            {rate.toFixed(1)}%
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -34,19 +34,19 @@ function CultureFacilityChart() {
       style={{
         width: '100%',
         maxWidth: '1000px',
-        height: '500px',
         margin: '2rem auto',
-        padding: '2rem',
-        backgroundColor: '#222222', // 어두운 배경
+        padding: '1rem',
+        backgroundColor: '#222222',
         borderRadius: '16px',
         fontFamily: 'Segoe UI, Roboto, sans-serif',
-        color: 'white'
+        color: 'white',
+        boxSizing: 'border-box'
       }}
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" aspect={2}>
         <BarChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+          margin={{ top: 20, right: 30, left: 20, bottom: 80 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#444" />
           <XAxis
@@ -54,13 +54,15 @@ function CultureFacilityChart() {
             angle={-45}
             textAnchor="end"
             interval={0}
-            stroke="#ccc"
-            style={{ fontSize: 12, fill: 'white' }}
+            tick={{ fontSize: 12, fill: '#ccc' }}
+            axisLine={{ stroke: '#666' }}
+            tickLine={{ stroke: '#666' }}
           />
           <YAxis
-            stroke="#ccc"
             allowDecimals={false}
-            style={{ fontSize: 12, fill: 'white' }}
+            tick={{ fontSize: 12, fill: '#ccc' }}
+            axisLine={{ stroke: '#666' }}
+            tickLine={{ stroke: '#666' }}
           />
           <Tooltip
             contentStyle={{

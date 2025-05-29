@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Cell
 } from 'recharts';
 import { motion } from 'framer-motion';
 
@@ -17,18 +23,44 @@ export default function WithdrawalBarChart() {
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: 600, margin: 'auto' }}>
-      <ResponsiveContainer height={300}>
-        <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
-          <XAxis dataKey="region" tick={{ fontSize: 14 }} />
-          <YAxis unit="%" tick={{ fontSize: 14 }} domain={[0, 6]} />
+    <div
+      style={{
+        width: '100%',
+        maxWidth: '600px',
+        margin: 'auto',
+        padding: '1rem',
+        backgroundColor: '#222222',
+        borderRadius: '12px',
+        boxSizing: 'border-box',
+        color: 'white'
+      }}
+    >
+      <ResponsiveContainer width="100%" aspect={2}>
+        <BarChart
+          data={data}
+          margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
+        >
+          <XAxis
+            dataKey="region"
+            tick={{ fontSize: 14, fill: '#ccc' }}
+            axisLine={{ stroke: '#666' }}
+            tickLine={{ stroke: '#666' }}
+          />
+          <YAxis
+            unit="%"
+            tick={{ fontSize: 14, fill: '#ccc' }}
+            domain={[0, 6]}
+            axisLine={{ stroke: '#666' }}
+            tickLine={{ stroke: '#666' }}
+          />
           <Tooltip
             formatter={(value) => `${value.toFixed(1)}%`}
             contentStyle={{
-              backgroundColor: '#fff',
-              border: '1px solid #ccc',
+              backgroundColor: '#333',
+              border: 'none',
               borderRadius: '8px',
-              fontSize: '14px'
+              fontSize: '14px',
+              color: 'white'
             }}
           />
           <Bar dataKey="rate" radius={[8, 8, 0, 0]}>
@@ -44,7 +76,6 @@ export default function WithdrawalBarChart() {
         </BarChart>
       </ResponsiveContainer>
 
-      {/* 클릭 시 상세 데이터 표시 + 모션 */}
       {activeIndex !== null && (
         <motion.div
           initial={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -54,12 +85,13 @@ export default function WithdrawalBarChart() {
             marginTop: '1rem',
             padding: '1rem',
             borderRadius: '12px',
-            backgroundColor: '#f0f0f0',
+            backgroundColor: '#ffffff',
             textAlign: 'center',
-            fontSize: '15px'
+            fontSize: '15px',
+            color: '#222'
           }}
         >
-          <strong>{data[activeIndex].region}:</strong> {data[activeIndex].detail}  
+          <strong>{data[activeIndex].region}:</strong> {data[activeIndex].detail}
           <br />
           자퇴율: {data[activeIndex].rate}%
         </motion.div>
