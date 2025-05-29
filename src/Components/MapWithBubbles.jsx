@@ -49,7 +49,7 @@ export default function MapWithBubbles() {
         }}
       />
       {Object.entries(employmentData).map(([region, { x, y, rate }]) => {
-        const leftPercent = (x / mapWidth) * 100;
+        const leftPercent = ((x - 180)/ mapWidth) * 100;
         const topPercent = (y / mapHeight) * 100;
         const sizeVW = Math.min((rate / 100) * 6, 6); // 최대 6vw 제한
 

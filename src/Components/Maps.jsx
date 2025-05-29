@@ -13,11 +13,8 @@ export default function ScrollDisappearingMap() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFrame(prev => {
-        if (prev < imageFrames.length - 1) return prev + 1;
-        return prev; // 마지막 프레임에서 멈춤
-      });
-    }, 700); // 0.5초마다 프레임 전환
+      setFrame(prev => (prev + 1) % imageFrames.length); // 반복되도록 수정
+    }, 500); // 0.5초 간격
 
     return () => clearInterval(interval);
   }, []);
@@ -29,7 +26,9 @@ export default function ScrollDisappearingMap() {
       maxWidth: '800px',
       aspectRatio: '1 / 1',
       margin: '0 auto',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      backgroundColor: '#222222',
+      borderRadius: '12px'
     }}>
       <img
         src={imageFrames[frame]}
@@ -37,7 +36,8 @@ export default function ScrollDisappearingMap() {
         style={{
           width: '100%',
           height: '100%',
-          objectFit: 'contain'
+          objectFit: 'contain',
+          display: 'block'
         }}
       />
     </div>

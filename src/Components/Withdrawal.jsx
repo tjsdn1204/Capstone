@@ -62,6 +62,10 @@ export default function WithdrawalBarChart() {
               fontSize: '14px',
               color: 'white'
             }}
+            itemStyle={{
+              color: '#FFD700', // 밝은 노란색
+              fontWeight: 'bold'
+            }}
           />
           <Bar dataKey="rate" radius={[8, 8, 0, 0]}>
             {data.map((entry, index) => (
