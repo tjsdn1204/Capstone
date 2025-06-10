@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer
 } from 'recharts';
-import { motion } from 'framer-motion';
 
 const data = [
   { year: 2014, population: 9181, changeRate: -2.1 },
@@ -19,29 +18,54 @@ const data = [
 ];
 
 export default function SchoolAgePopulationChart() {
-  const [selected, setSelected] = useState(null);
-
-  const handleClick = (e) => {
-    if (e && e.activePayload && e.activePayload[0]) {
-      setSelected(e.activePayload[0].payload);
-    }
-  };
-
   return (
-    <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
-      <ResponsiveContainer height={320}>
+    <div
+      style={{
+        width: '100%',
+        maxWidth: 700,
+        margin: 'auto',
+        padding: '1rem',
+        backgroundColor: '#222222',
+        color: 'white',
+        borderRadius: '12px',
+        boxSizing: 'border-box',
+      }}
+    >
+      <ResponsiveContainer width="100%" aspect={1.3}>
         <LineChart
           data={data}
           margin={{ top: 20, right: 50, left: 0, bottom: 10 }}
-          onClick={handleClick}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" fontSize={14} />
-          <YAxis yAxisId="left" fontSize={14} tickFormatter={(v) => `${v.toLocaleString()}`} />
-          <YAxis yAxisId="right" orientation="right" fontSize={14} domain={[-3, 3]} tickFormatter={(v) => `${v.toFixed(1)}%`} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+          <XAxis dataKey="year" fontSize={12} stroke="#ccc" />
+          <YAxis
+            yAxisId="left"
+            fontSize={12}
+            stroke="#ccc"
+            tickFormatter={(v) => `${v.toLocaleString()}`}
+          />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            domain={[-3, 3]}
+            fontSize={12}
+            stroke="#ccc"
+            tickFormatter={(v) => `${v.toFixed(1)}%`}
+          />
           <Tooltip
-            formatter={(value, name) => name === 'population' ? `${value.toLocaleString()}명` : `${value.toFixed(1)}%`}
+            formatter={(value, name) =>
+              name === 'population'
+                ? `${value.toLocaleString()}명`
+                : `${value.toFixed(1)}%`
+            }
             labelFormatter={(label) => `연도: ${label}`}
+            contentStyle={{
+              backgroundColor: '#333',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+            }}
+            itemStyle={{ color: '#FFD700', fontWeight: 'bold' }}
           />
           <Line
             yAxisId="left"
@@ -58,36 +82,13 @@ export default function SchoolAgePopulationChart() {
             type="monotone"
             dataKey="changeRate"
             name="증감률"
-            stroke="#388e3c"
+            stroke="#66bb6a"
             strokeWidth={2}
             strokeDasharray="4 2"
             dot={{ r: 4 }}
           />
         </LineChart>
       </ResponsiveContainer>
-
-      {selected && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          style={{
-            marginTop: '1rem',
-            padding: '1.2rem',
-            backgroundColor: '#ffffff',
-            border: '1px solid #e0e0e0',
-            borderRadius: '12px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-            textAlign: 'center'
-          }}
-        >
-          <h3 style={{ margin: 0 }}>{selected.year}년</h3>
-          <p style={{ margin: '0.5rem 0 0', fontSize: '1.1rem' }}>
-            학령인구: <strong>{selected.population.toLocaleString()}</strong> 명<br />
-            증감률: <strong>{selected.changeRate}%</strong>
-          </p>
-        </motion.div>
-      )}
     </div>
   );
 }
